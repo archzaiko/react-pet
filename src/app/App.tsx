@@ -1,9 +1,12 @@
-import { RouterProvider } from 'react-router-dom';
-
-import { AppRouter } from './app.router';
+import { Fragment } from 'react';
+import { Outlet } from 'react-router-dom';
 
 function App(): JSX.Element {
-  return <RouterProvider router={AppRouter} />;
+  return (
+    <Fragment>
+      <Outlet />
+    </Fragment>
+  );
 }
 
 export default App;

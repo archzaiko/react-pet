@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Link, Paper, Stack, TextField } from '@mui/material';
 
-interface LoginFormPayload {
+import { signUp } from '../firebase/firebase-auth';
+
+interface SignUpFormPayload {
   email: string;
   password: string;
 }
 
-export function LoginForm(): JSX.Element {
-  const [form, setForm] = useState<LoginFormPayload>({
+export function SignUpForm(): JSX.Element {
+  const [form, setForm] = useState<SignUpFormPayload>({
     email: '',
     password: '',
   });
@@ -21,8 +23,8 @@ export function LoginForm(): JSX.Element {
     });
   };
 
-  const handleLoginClick = (): void => {
-    // signIn(form.email, form.password);
+  const handleSignUpClick = (): void => {
+    signUp(form.email, form.password);
   };
 
   return (
@@ -34,7 +36,7 @@ export function LoginForm(): JSX.Element {
             error
             type="text"
             required
-            label="Username"
+            label="Email"
             helperText="Field should be defined"
             autoComplete="username"
             onChange={handleFieldChange}
@@ -49,10 +51,10 @@ export function LoginForm(): JSX.Element {
             autoComplete="password"
             onChange={handleFieldChange}
           />
-          <Button variant="contained" onClick={handleLoginClick}>
-            Login
+          <Button variant="contained" onClick={handleSignUpClick}>
+            SignUp
           </Button>
-          <Link href="/signup">Create user</Link>
+          <Link href="/login">Login</Link>
         </Stack>
       </Paper>
     </form>
