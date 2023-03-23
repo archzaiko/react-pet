@@ -6,6 +6,7 @@ import { AppNotification } from './AppNotification';
 
 export const App = (): JSX.Element => {
   const [currentUser, authLoading] = useAuthState();
+  console.log('App currentUser', currentUser);
 
   if (authLoading) return <AppLoading />;
   return (

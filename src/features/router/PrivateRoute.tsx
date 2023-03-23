@@ -6,6 +6,7 @@ import { CurrentUserContext } from 'features/auth/CurrentUserContext';
 
 export const PrivateRoute = ({ children }: PropsWithChildren): JSX.Element => {
   const currentUser: User | null = useContext(CurrentUserContext);
+  console.log('PrivateRoute', currentUser);
   if (!currentUser) return <Navigate to="/login" />;
   return <>{children}</>;
 };

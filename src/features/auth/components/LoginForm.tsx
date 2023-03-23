@@ -53,7 +53,7 @@ export function LoginForm(): JSX.Element {
   return (
     <form noValidate onSubmit={formik.handleSubmit}>
       <Paper elevation={2} sx={{ padding: '2rem' }}>
-        <Stack spacing={2} sx={{ minWidth: '300px' }}>
+        <Stack spacing={2} sx={{ minWidth: '400px' }}>
           <FormControl>
             <TextField
               name="email"
