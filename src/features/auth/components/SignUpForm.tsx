@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Link, Paper, Stack, TextField } from '@mui/material';
-import { useAuth } from '../useAuth';
+import { useAuthApi } from '../useAuthApi';
 
 interface SignUpFormPayload {
   email: string;
@@ -8,7 +8,7 @@ interface SignUpFormPayload {
 }
 
 export function SignUpForm(): JSX.Element {
-  const auth = useAuth();
+  const auth = useAuthApi();
 
   const [form, setForm] = useState<SignUpFormPayload>({
     email: '',

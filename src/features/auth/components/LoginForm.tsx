@@ -10,7 +10,7 @@ import {
   TextField,
 } from '@mui/material';
 import { useAppNotificationContext } from 'features/app-notification/useAppNotificationContext';
-import { useAuth } from '../useAuth';
+import { useAuthApi } from '../useAuthApi';
 
 interface LoginFormPayload {
   email: string;
@@ -37,7 +37,7 @@ const validate = (values: LoginFormPayload): FormikErrors<LoginFormPayload> => {
 };
 
 export function LoginForm(): JSX.Element {
-  const auth = useAuth();
+  const auth = useAuthApi();
   const navigate: NavigateFunction = useNavigate();
   const notificationContext = useAppNotificationContext();
 
