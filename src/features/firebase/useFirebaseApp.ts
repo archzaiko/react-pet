@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { FirebaseApp, FirebaseOptions, initializeApp } from 'firebase/app';
 
 export const firebaseConfig: FirebaseOptions = {
@@ -5,6 +6,6 @@ export const firebaseConfig: FirebaseOptions = {
   apiKey: 'AIzaSyCyoOdB612gSqPf-aYxP1MM1amCTPDCmp8',
 };
 
-export const useApp = (): FirebaseApp => {
-  return initializeApp(firebaseConfig);
+export const useFirebaseApp = (): FirebaseApp => {
+  return useMemo(() => initializeApp(firebaseConfig), []);
 };

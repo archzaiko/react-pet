@@ -1,4 +1,5 @@
 import { FormikErrors, useFormik } from 'formik';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 import {
   Button,
@@ -8,13 +9,18 @@ import {
   Stack,
   TextField,
 } from '@mui/material';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { login } from '../auth.facade';
+import { useAppNotificationContext } from 'features/app-notification/useAppNotificationContext';
+import { useAuth } from '../useAuth';
 
 interface LoginFormPayload {
   email: string;
   password: string;
 }
+
+const initialValues: LoginFormPayload = {
+  email: 'user@dev.com',
+  password: 'password',
+};
 
 const validate = (values: LoginFormPayload): FormikErrors<LoginFormPayload> => {
   const errors: FormikErrors<LoginFormPayload> = {};
@@ -31,23 +37,23 @@ const validate = (values: LoginFormPayload): FormikErrors<LoginFormPayload> => {
 };
 
 export function LoginForm(): JSX.Element {
+  const auth = useAuth();
   const navigate: NavigateFunction = useNavigate();
+  const notificationContext = useAppNotificationContext();
+
+  const onSubmit = (values: LoginFormPayload): void => {
+    auth
+      .login(values.email, values.password)
+      .then(() => navigate('/inbox'))
+      .catch(() =>
+        notificationContext.pushError('Login is failed. Check your credentials')
+      );
+  };
 
   const formik = useFormik<LoginFormPayload>({
-    initialValues: {
-      email: 'user@dev.com',
-      password: 'password',
-    },
+    initialValues,
     validate,
-    onSubmit: (values: LoginFormPayload) => {
-      login(values.email, values.password)
-        .then(() => {
-          navigate('/inbox');
-        })
-        .catch((error: unknown) => {
-          formik.setStatus('error');
-        });
-    },
+    onSubmit,
   });
 
   return (

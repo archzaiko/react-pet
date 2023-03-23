@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import { Router } from '@remix-run/router';
 
-import { PrivateRoute } from 'features/router/PrivateRoute';
+import { PrivateRoute } from 'features/navigation/PrivateRoute';
 import { RootPage } from 'pages/RootPage';
 import { ErrorPage } from 'pages/ErrorPage';
 import { LoginPage } from 'pages/LoginPage';

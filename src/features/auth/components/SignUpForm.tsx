@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Link, Paper, Stack, TextField } from '@mui/material';
-
-import { signUp } from '../auth.facade';
+import { useAuth } from '../useAuth';
 
 interface SignUpFormPayload {
   email: string;
@@ -9,6 +8,8 @@ interface SignUpFormPayload {
 }
 
 export function SignUpForm(): JSX.Element {
+  const auth = useAuth();
+
   const [form, setForm] = useState<SignUpFormPayload>({
     email: '',
     password: '',
@@ -24,7 +25,7 @@ export function SignUpForm(): JSX.Element {
   };
 
   const handleSignUpClick = (): void => {
-    signUp(form.email, form.password);
+    auth.signup(form.email, form.password);
   };
 
   return (
