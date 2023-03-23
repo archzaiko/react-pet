@@ -1,9 +1,11 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useCurrentUser } from '../auth/useCurrentUser';
 
-export function PrivateRoute({ children }: PropsWithChildren): any {
-  const currentUser: any = useCurrentUser();
-  if (!currentUser) return <Navigate to="/login" replace />;
-  return children;
-}
+import { User } from 'firebase/auth';
+import { CurrentUserContext } from 'features/auth/CurrentUserContext';
+
+export const PrivateRoute = ({ children }: PropsWithChildren): JSX.Element => {
+  const currentUser: User | null = useContext(CurrentUserContext);
+  if (!currentUser) return <Navigate to="/login" />;
+  return <>{children}</>;
+};

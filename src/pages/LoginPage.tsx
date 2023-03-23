@@ -1,6 +1,6 @@
 import { Container, SxProps } from '@mui/material';
 
-import { LoginForm } from '../features/auth/LoginForm';
+import { LoginForm } from '../features/auth/components/LoginForm';
 
 const containerStyles: SxProps = {
   height: '100%',
@@ -9,10 +9,10 @@ const containerStyles: SxProps = {
   alignItems: 'center',
 };
 
-export function LoginPage(): JSX.Element {
+export const LoginPage = (): JSX.Element => {
   return (
     <Container sx={containerStyles}>
       <LoginForm />
     </Container>
   );
-}
+};

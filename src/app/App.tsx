@@ -1,12 +1,19 @@
-import { Fragment } from 'react';
-import { Outlet } from 'react-router-dom';
+import { CurrentUserContext } from 'features/auth/CurrentUserContext';
+import { useAuthState } from 'features/firebase/auth/useAuthState';
+import { AppRouter } from './AppRouter';
+import { AppLoading } from './AppLoading';
+import { AppNotification } from './AppNotification';
 
-function App(): JSX.Element {
+export const App = (): JSX.Element => {
+  const [currentUser, authLoading] = useAuthState();
+
+  if (authLoading) return <AppLoading />;
   return (
-    <Fragment>
-      <Outlet />
-    </Fragment>
+    <>
+      <CurrentUserContext.Provider value={currentUser}>
+        <AppRouter></AppRouter>
+      </CurrentUserContext.Provider>
+      <AppNotification message="err" status="ok" />
+    </>
   );
-}
-
-export default App;
+};

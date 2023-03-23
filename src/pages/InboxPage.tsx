@@ -1,3 +1,3 @@
-export function InboxPage(): JSX.Element {
+export const InboxPage = (): JSX.Element => {
   return <div>InboxPage</div>;
-}
+};

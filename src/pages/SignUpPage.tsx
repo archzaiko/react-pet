@@ -1,6 +1,6 @@
 import { Container, SxProps } from '@mui/material';
 
-import { SignUpForm } from '../features/auth/SignUpForm';
+import { SignUpForm } from '../features/auth/components/SignUpForm';
 
 const containerStyles: SxProps = {
   height: '100%',

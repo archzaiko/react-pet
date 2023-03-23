@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Link, Paper, Stack, TextField } from '@mui/material';
 
-import { signUp } from '../firebase/firebase-auth';
+import { signUp } from '../auth.facade';
 
 interface SignUpFormPayload {
   email: string;
