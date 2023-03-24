@@ -1,6 +1,9 @@
 import { Container, SxProps } from '@mui/material';
 
-import { LoginForm } from '../features/auth/components/LoginForm';
+import { LoginForm } from 'features/auth/components/LoginForm';
+import { useCurrentUser } from 'features/auth/useCurrentUser';
+import { AnimatedPage } from 'features/components/AnimatedRoute';
+import { Navigate } from 'react-router-dom';
 
 const containerStyles: SxProps = {
   height: '100%',
@@ -10,9 +13,14 @@ const containerStyles: SxProps = {
 };
 
 export const LoginPage = (): JSX.Element => {
+  const user = useCurrentUser();
+  if (user) return <Navigate to="/" />;
+
   return (
-    <Container sx={containerStyles}>
-      <LoginForm />
-    </Container>
+    <AnimatedPage>
+      <Container sx={containerStyles}>
+        <LoginForm />
+      </Container>
+    </AnimatedPage>
   );
 };

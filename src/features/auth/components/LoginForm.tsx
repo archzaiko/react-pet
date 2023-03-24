@@ -1,5 +1,4 @@
 import { FormikErrors, useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
 
 import {
   Button,
@@ -38,13 +37,12 @@ const validate = (values: LoginFormPayload): FormikErrors<LoginFormPayload> => {
 
 export function LoginForm(): JSX.Element {
   const auth = useAuthApi();
-  const navigate = useNavigate();
   const notificationContext = useAppNotificationContext();
 
   const onSubmit = (values: LoginFormPayload): void => {
     auth
       .login(values.email, values.password)
-      .then(() => navigate('/inbox'))
+      .then()
       .catch(() =>
         notificationContext.pushError('Login is failed. Check your credentials')
       );

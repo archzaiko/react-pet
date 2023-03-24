@@ -18,5 +18,9 @@ export const useFirebaseAuthApi = (): AuthApi => {
     await createUserWithEmailAndPassword(auth, email, password);
   };
 
-  return { login, signup };
+  const logout = async (): Promise<void> => {
+    await auth.signOut();
+  };
+
+  return { login, signup, logout };
 };

@@ -23,6 +23,7 @@ export const useFirebaseAuthState = (): [User | null, boolean] => {
     const user: User | null = firebaseUser
       ? mapFirebaseUser(firebaseUser)
       : null;
+
     setUser(user);
     setLoading(false);
   };

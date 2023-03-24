@@ -10,21 +10,32 @@ import { RootPage } from 'pages/RootPage';
 import { ErrorPage } from 'pages/ErrorPage';
 import { LoginPage } from 'pages/LoginPage';
 import { InboxPage } from 'pages/InboxPage';
+import { AnimatedRoute } from 'features/navigation/AnimatedRoute';
 
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <RootPage />,
+    element: (
+      <AnimatedRoute>
+        <PrivateRoute />
+      </AnimatedRoute>
+    ),
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '',
+        element: <RootPage />,
+        children: [{ path: 'inbox', element: <InboxPage /> }],
+      },
+    ],
   },
   {
     path: '/login',
-    element: <LoginPage />,
-  },
-  {
-    path: '/inbox',
-    element: <PrivateRoute />,
-    children: [{ path: '', element: <InboxPage /> }],
+    element: (
+      <AnimatedRoute>
+        <LoginPage />
+      </AnimatedRoute>
+    ),
   },
 ];
 
