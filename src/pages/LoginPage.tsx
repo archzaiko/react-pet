@@ -2,7 +2,7 @@ import { Container, SxProps } from '@mui/material';
 
 import { LoginForm } from 'features/auth/components/LoginForm';
 import { useCurrentUser } from 'features/auth/useCurrentUser';
-import { AnimatedPage } from 'features/components/AnimatedRoute';
+import { AnimatedPage } from 'features/components/AnimatedPage';
 import { Navigate } from 'react-router-dom';
 
 const containerStyles: SxProps = {

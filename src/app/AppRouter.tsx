@@ -10,16 +10,11 @@ import { RootPage } from 'pages/RootPage';
 import { ErrorPage } from 'pages/ErrorPage';
 import { LoginPage } from 'pages/LoginPage';
 import { InboxPage } from 'pages/InboxPage';
-import { AnimatedRoute } from 'features/navigation/AnimatedRoute';
 
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: (
-      <AnimatedRoute>
-        <PrivateRoute />
-      </AnimatedRoute>
-    ),
+    element: <PrivateRoute />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -31,11 +26,7 @@ const routes: RouteObject[] = [
   },
   {
     path: '/login',
-    element: (
-      <AnimatedRoute>
-        <LoginPage />
-      </AnimatedRoute>
-    ),
+    element: <LoginPage />,
   },
 ];
 

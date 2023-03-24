@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 import { Header } from 'features/components/Header';
-import { AnimatedPage } from 'features/components/AnimatedRoute';
+import { AnimatedPage } from 'features/components/AnimatedPage';
 
 export const RootPage = (): JSX.Element => {
   const location = useLocation();
