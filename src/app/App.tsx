@@ -1,20 +1,22 @@
-import { useFirebaseAuthState } from 'features/firebase/auth/useFirebaseAuthState';
-import { AppNotificationContextProvider } from 'features/app-notification/AppNotificationContextProvider';
-import { CurrentUserContextProvider } from 'features/auth/current-user/CurrentUserContextProvider';
+import { ReactElement } from 'react';
 
+import { AppNotificationContextProvider } from 'features/app-notification/AppNotificationContextProvider';
+import { AuthContext, AuthState } from 'features/auth/current-user/AuthContext';
 import { AppRouter } from './AppRouter';
 import { AppLoading } from './AppLoading';
+import { AuthContextProvider } from 'features/auth/current-user/AuthContextProvider';
 
 export const App = (): JSX.Element => {
-  const [currentUser, authLoading] = useFirebaseAuthState();
-  console.log('App currentUser', currentUser);
+  const renderApp = (loading: boolean): ReactElement =>
+    loading ? <AppLoading /> : <AppRouter />;
 
-  if (authLoading) return <AppLoading />;
   return (
     <AppNotificationContextProvider>
-      <CurrentUserContextProvider>
-        <AppRouter></AppRouter>
-      </CurrentUserContextProvider>
+      <AuthContextProvider>
+        <AuthContext.Consumer>
+          {({ loading }: AuthState) => renderApp(loading)}
+        </AuthContext.Consumer>
+      </AuthContextProvider>
     </AppNotificationContextProvider>
   );
 };

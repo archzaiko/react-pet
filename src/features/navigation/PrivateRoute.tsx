@@ -1,12 +1,11 @@
-import { PropsWithChildren } from 'react';
-import { Navigate } from 'react-router-dom';
+import { ReactElement } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 
-import { User } from 'firebase/auth';
-import { useCurrentUserContext } from 'features/auth/current-user/useCurrentUserContext';
+import { useCurrentUser } from 'features/auth/current-user/useCurrentUser';
+import { User } from 'features/auth/current-user/AuthContext';
 
-export const PrivateRoute = ({ children }: PropsWithChildren): JSX.Element => {
-  const currentUser: User | null = useCurrentUserContext();
-  console.log('PrivateRoute', currentUser);
+export const PrivateRoute = (): ReactElement => {
+  const currentUser: User | null = useCurrentUser();
   if (!currentUser) return <Navigate to="/login" />;
-  return <>{children}</>;
+  return <Outlet />;
 };

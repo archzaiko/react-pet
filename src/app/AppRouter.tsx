@@ -23,14 +23,13 @@ const routes: RouteObject[] = [
   },
   {
     path: '/inbox',
-    element: (
-      <PrivateRoute>
-        <InboxPage />
-      </PrivateRoute>
-    ),
+    element: <PrivateRoute />,
+    children: [{ path: '', element: <InboxPage /> }],
   },
 ];
 
 const router: Router = createBrowserRouter(routes);
 
-export const AppRouter = (): JSX.Element => <RouterProvider router={router} />;
+export const AppRouter = (): JSX.Element => {
+  return <RouterProvider router={router} />;
+};

@@ -1,5 +1,5 @@
 import { FormikErrors, useFormik } from 'formik';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Button,
@@ -38,7 +38,7 @@ const validate = (values: LoginFormPayload): FormikErrors<LoginFormPayload> => {
 
 export function LoginForm(): JSX.Element {
   const auth = useAuthApi();
-  const navigate: NavigateFunction = useNavigate();
+  const navigate = useNavigate();
   const notificationContext = useAppNotificationContext();
 
   const onSubmit = (values: LoginFormPayload): void => {
