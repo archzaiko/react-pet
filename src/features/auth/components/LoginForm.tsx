@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FormikErrors, useFormik } from 'formik';
 
 import {
@@ -38,14 +39,19 @@ const validate = (values: LoginFormPayload): FormikErrors<LoginFormPayload> => {
 export function LoginForm(): JSX.Element {
   const auth = useAuthApi();
   const notificationContext = useAppNotificationContext();
+  const [pending, setPending] = useState(false);
 
   const onSubmit = (values: LoginFormPayload): void => {
+    setPending(true);
     auth
       .login(values.email, values.password)
-      .then()
-      .catch(() =>
-        notificationContext.pushError('Login is failed. Check your credentials')
-      );
+      .then(() => setPending(false))
+      .catch(() => {
+        notificationContext.pushError(
+          'Login is failed. Check your credentials'
+        );
+        setPending(false);
+      });
   };
 
   const formik = useFormik<LoginFormPayload>({
@@ -83,9 +89,16 @@ export function LoginForm(): JSX.Element {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-          <Button type="submit" variant="contained">
+
+          <Button
+            type="submit"
+            variant="contained"
+            className={pending ? 'motion-safe:animate-pulse' : undefined}
+            disabled={pending}
+          >
             Login
           </Button>
+
           <Link href="/signup">Create user</Link>
         </Stack>
       </Paper>
