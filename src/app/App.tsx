@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
 
 import { AppNotificationContextProvider } from 'features/app-notification/AppNotificationContextProvider';
-import { AuthContext, AuthState } from 'features/auth/current-user/AuthContext';
+import { AuthContextProvider } from 'features/auth/AuthContextProvider';
+import { AuthContext, AuthState } from 'features/auth/AuthContext';
 import { AppRouter } from './AppRouter';
 import { AppLoading } from './AppLoading';
-import { AuthContextProvider } from 'features/auth/current-user/AuthContextProvider';
 
 export const App = (): JSX.Element => {
   const renderApp = (loading: boolean): ReactElement =>

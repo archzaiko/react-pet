@@ -7,7 +7,7 @@ import {
 } from 'firebase/auth';
 
 import { useFirebaseAuth } from './useFirebaseAuth';
-import { User } from 'features/auth/current-user/AuthContext';
+import { User } from 'features/auth/AuthContext';
 
 const mapFirebaseUser = (user: FirebaseUser): User => ({
   email: user.email ?? '',
